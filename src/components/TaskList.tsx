@@ -1,90 +1,44 @@
 import styles from './TaskList.module.css'
 import { Trash } from 'phosphor-react'
+import { BsFillCheckCircleFill } from 'react-icons/bs'
+import { ITask } from './TaskForm'
 
-export function TaskList() {
+interface TaskListProps {
+  task: ITask
+  onDeleteTask: (taskId: string) => void
+  onCompletedTask: (taskId: string) => void
+}
+
+export function TaskList({
+  task,
+  onDeleteTask,
+  onCompletedTask,
+}: TaskListProps) {
+  function handleDeleteTask() {
+    onDeleteTask(task.id)
+  }
+
+  function handleCompletedTask() {
+    onCompletedTask(task.id)
+  }
+
   return (
-    <div className={styles.taskList}>
-      <div>
-        <table className={styles.table}>
-          <tbody>
-            <tr>
-              <td>
-                <div className={styles.round}>
-                  <input type="checkbox" id="checkbox" />
-                  <label htmlFor="checkbox"></label>
-                </div>
-              </td>
-              <td className={styles.taskTd}>
-                Integer urna interdum massa libero auctor neque turpis turpis
-                semper. Duis vel sed fames integer.
-              </td>
-              <td className={styles.trash}>
-                <Trash />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className={styles.round}>
-                  <input type="checkbox" id="checkbox1" />
-                  <label htmlFor="checkbox1"></label>
-                </div>
-              </td>
-              <td className={styles.taskTd}>
-                Integer urna interdum massa libero auctor neque turpis turpis
-                semper. Duis vel sed fames integer.
-              </td>
-              <td className={styles.trash}>
-                <Trash />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className={styles.round}>
-                  <input type="checkbox" id="checkbox2" />
-                  <label htmlFor="checkbox2"></label>
-                </div>
-              </td>
-              <td className={styles.taskTd}>
-                Integer urna interdum massa libero auctor neque turpis turpis
-                semper. Duis vel sed fames integer.
-              </td>
-              <td className={styles.trash}>
-                <Trash />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className={styles.round}>
-                  <input type="checkbox" id="checkbox3" />
-                  <label htmlFor="checkbox3"></label>
-                </div>
-              </td>
-              <td className={styles.taskTd}>
-                Integer urna interdum massa libero auctor neque turpis turpis
-                semper. Duis vel sed fames integer.
-              </td>
-              <td className={styles.trash}>
-                <Trash />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className={styles.round}>
-                  <input type="checkbox" id="checkbox4" />
-                  <label htmlFor="checkbox4"></label>
-                </div>
-              </td>
-              <td className={styles.taskTd}>
-                Integer urna interdum massa libero auctor neque turpis turpis
-                semper. Duis vel sed fames integer.
-              </td>
-              <td className={styles.trash}>
-                <Trash />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div key={task.id} className={styles.table}>
+      <button className={styles.checkContainer} onClick={handleCompletedTask}>
+        {task.isCompleted ? <BsFillCheckCircleFill /> : <div />}
+      </button>
+
+      <p className={task.isCompleted ? styles.textCompleted : ''}>
+        {task.title}
+      </p>
+
+      <button
+        className={styles.trash}
+        onClick={handleDeleteTask}
+        title="Deletar Tarefa"
+      >
+        <Trash size={20} />
+      </button>
     </div>
   )
 }

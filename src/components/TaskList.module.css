@@ -1,20 +1,39 @@
 .taskList {
-/* Tasks */
 
+ /* Task */
+
+
+box-sizing: border-box;
 
 /* Auto layout */
 
 display: flex;
-flex-direction: column;
+flex-direction: row;
 align-items: flex-start;
-padding: 0px;
-gap: 24px;
 
-position: absolute;
-width: 736px;
-height: 451px;
+gap: 0.75rem;
+
+width: 100%;
 left: calc(50% - 736px/2);
 top: 334px;
+
+/* Gray 500 */
+
+background: #262626;
+/* Gray 400 */
+
+border: 1px solid #333333;
+box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
+border-radius: 0.5rem;
+
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
 
 }
 
@@ -202,7 +221,7 @@ order: 1;
 flex-grow: 0;
 }
 
-.table tbody{
+.table {
   /* List */
 
 
@@ -226,7 +245,7 @@ align-self: stretch;
 flex-grow: 0;
 }
 
-.table tr {
+.table {
   /* Task */
 
 
@@ -261,72 +280,14 @@ flex-grow: 0;
 }
 
 
-.round {
-  position: relative;
-  /* check */
-  width: 24px;
-  height: 24px;
 
 
-/* Inside auto layout */
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+.table p {
+  font-size: 0.875rem;
+  line-height: 1.18rem;
+  color: var(--gray-100);
+  margin-right: auto;
 }
-
-.round label {
-  background-color: var(--gray-500);
-  border: 1px solid var(--blue);
-  border-radius: 50%;
-  cursor: pointer;
-  height: 20px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 20px;
-}
-
-.round label:hover {
-  background-color: var(--gray-600);
-  border: 1px solid var(--blue-dark);
-}
-
-.round label:after {
-  border: 1px solid #fff;
-  border-top: none;
-  border-right: none;
-  content: "";
-  height: 4px;
-  left: 4px;
-  opacity: 0;
-  position: absolute;
-  top: 6px;
-  transform: rotate(-45deg);
-  width: 10px;
-}
-
-.round input[type="checkbox"] {
-  visibility: hidden;
-}
-
-
-
-.round input[type="checkbox"]:checked + label {
-  background-color: var(--purple-dark);
-  border-color: var(--purple-dark);
-}
-
-.round input[type="checkbox"]:checked + label:hover {
-  background-color: var(--purple);
-  border-color: var(--purple);
-}
-
-.round input[type="checkbox"]:checked + label:after {
-  opacity: 1;
-}
-
-
 
 .taskTd {
   width: 632px;
@@ -359,6 +320,8 @@ flex-grow: 0;
 width: 24px;
 height: 24px;
 color: var(--gray-300);
+background-color: var(--gray-500);
+border: 0;
 
 border-radius: 4px;
 
@@ -373,3 +336,50 @@ flex-grow: 0;
   color: var(--danger);
 
 }
+
+.checkContainer {
+  width: 1.125rem;
+  height: 1.125rem;
+  background: none;
+  border: none;
+  box-shadow: 0 0 0 0
+  
+}
+
+
+
+.checkContainer div {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  border: 2px solid var(--blue);
+  
+}
+.checkContainer div:hover {
+  border-radius: 999px;
+  border: 2px solid var(--blue-dark);
+  background-color: var(--gray-400)
+  
+
+}
+
+.checkContainer svg {
+  width: 100%;
+  height: 100%;
+  color: var(--purple-dark);
+  background-color: var(--white);
+  border-radius: 999px;
+  
+}
+
+.checkContainer svg:hover {
+  color: var(--purple);
+  background-color: var(--white);
+  border-radius: 999px;
+}
+
+p.textCompleted {
+  color: var(--gray-300);
+  text-decoration: line-through;
+}
+

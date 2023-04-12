@@ -10,9 +10,7 @@ export function App() {
       <Header />
 
       <div className={styles.container}>
-        <main>
-          <TaskForm />
-        </main>
+        <TaskForm />
       </div>
     </div>
   )
